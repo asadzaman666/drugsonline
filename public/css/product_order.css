@@ -1,0 +1,65 @@
+#addproduct{
+    margin-top: 0px;
+    text:center;
+}
+
+body {
+    margin-top: 60px;
+}
+
+.landing {
+	height: 100vh;
+}
+.main-content {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.sidebar {
+	background-color: #fff;
+	list-style: none;
+	height: 100%;
+}
+
+.editproduct{
+    margin-top: 60px;
+}
+
+#editmedicine{
+
+    margin-top: -10px;
+}
+
+.text-inline{
+
+    display: inline-flex;
+}
+
+#adminpanel{
+
+    text-align:center;
+}
+
+/* cagetorylist */
+.solomon{
+    margin-top: 20px;
+}
+
+.card-head-place{
+    text-align: center;
+}
+
+/* orders */
+
+#orders{
+    margin-top: 125px;
+}
+
+
+.card{
+    max-width: 100rem;
+}
+
+.bg-primary2 {
+  background-color: #3498db;
+  color: #fff;
+}

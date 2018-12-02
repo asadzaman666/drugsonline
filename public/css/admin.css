@@ -1,0 +1,106 @@
+/*-------------------*/
+/*    Basic Setup   */
+/*-------------------*/
+
+.admin-navbar {
+    margin-top: 50px;
+    width: 100%;
+
+}
+
+.view-table,
+.view-table-cat {
+    width: 90%;
+    margin: 0 5%;
+}
+
+
+/*-------------------*/
+/*    OrderList  */
+/*-------------------*/
+
+.orders {
+    margin-top: 15px;
+
+}
+
+.orders-table th {
+    text-align: left;
+}
+
+#inputState {
+    max-width:7rem;
+
+}
+
+/*-------------------*/
+/*    Categories   */
+/*-------------------*/
+
+.view-table-cat {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.admin-btn form{
+  display: inline;
+
+}
+
+.admin-btn form:last-child{
+  padding-left: 10px;
+
+}
+
+.cat-field {
+  max-width: 40rem;
+}
+
+/*-------------------*/
+/*    Medicines   */
+/*-------------------*/
+
+.view-table-medicine {
+  width: 100%;
+  margin-top: 0;
+}
+
+.row-size {
+  max-width: 5rem;
+}
+
+.name-form{
+  max-width: 8rem;
+}
+
+
+/*-------------------*/
+/*    Proflie   */
+/*-------------------*/
+
+.profile {
+  margin: 200px auto;
+}
+.card {
+  padding: 20px;
+}
+.addmedicine {
+  margin-top: 15px;
+}
+
+/*-------------------*/
+/*    Add med & cat   */
+/*-------------------*/
+
+.med-add-allign {
+  float: left;
+  padding: 20px;
+  padding-right: 50px;
+  padding-left:  100px;
+}
+
+.med-add-allign-2 {
+  float: left;
+  padding: 20px;
+}
