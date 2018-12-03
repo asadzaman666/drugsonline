@@ -9,7 +9,7 @@
 
               <div class="col-md-5 order-md-1 offset-md-3" id="signinform">
                 <h4 class="mb-3 signpos">Sign in</h4>
-                <form class="needs-validation" method="post" action="{{route('login.home')}}" validate>
+                <form class="needs-validation mb-3" method="post" action="{{route('login.home')}}" validate>
 
                     {{ csrf_field() }}
 
@@ -32,7 +32,11 @@
                   <button class="btn btn-dark btn-lg btn-block" type="submit">Sign in</button>
                 </form>
 
-                <div>
+                <div class="mb-3 text-center">
+                  <p>Don't have an account? Register <a href="{{route('user.create')}}">here</a></p>
+                  </div>
+
+                <div class="mb-3">
 
                     @if(session()->has('login_error'))
                         <div class="alert alert-danger text-center" style="margin-top:22px">
