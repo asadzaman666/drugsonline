@@ -18,3 +18,6 @@
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"  />
     <!-- custom css file -->
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('/css/app.css')); ?>"/>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">

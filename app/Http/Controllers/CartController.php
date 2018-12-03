@@ -58,7 +58,7 @@ class CartController extends Controller
             }
             else{
 
-                return view('checkout')
+                return view('signin.index')
                     ->with('cat', $cat);
 
             }
