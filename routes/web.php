@@ -43,6 +43,9 @@ Route::get('/thankyou', 'HomeController@thankyou')->name('thankyou');
 //user check w/ middleware
 Route::group(['middleware' => ['checkUser']], function(){
 
+    //cancel order
+    Route::delete('orders/{id}/delete', 'OrderController@destroy')->name('order.destroy');
+
     //check profile ownership w/ middleware
     Route::group(['middleware' => ['profileOwnership']], function(){
 
@@ -89,4 +92,5 @@ Route::group(['middleware' => ['checkAdmin']], function() {
 
 
 //dummy
+Route::get( '/test/{index}', 'HomeController@test' )->name ( 'test' );
 //Route::get('/mail', 'OrderController@dummy')->name('dummy');

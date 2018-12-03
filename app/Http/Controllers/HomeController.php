@@ -119,8 +119,9 @@ class HomeController extends Controller
             Cart::destroy();
 
             return view('thankyou');
+    }
 
-
-
+    public function test ( $index ) {
+        return $index;
     }
 }

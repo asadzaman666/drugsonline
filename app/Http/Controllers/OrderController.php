@@ -129,14 +129,21 @@ class OrderController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
+     * Remove pending order by user
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+
+        $order = Order::find($request->id);
+
+        $order->delete();
+
+        $request->session()->flash('order_cancel');
+
+        return back();
     }
 
     // public function dummy()
