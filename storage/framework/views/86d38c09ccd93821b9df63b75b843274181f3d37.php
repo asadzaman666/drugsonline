@@ -12,16 +12,24 @@
 		<div class="col-md-12 order-md-2 ">
 			<div class="py-5 " style="float:left">
 				<h2>Checkout </h2>
+
 			</div>
+
 			<?php if(!session()->has('user')): ?>
 			<div class="py-5 " style="float:right">
 				<a href="<?php echo e(route('login.index')); ?>" class="font-weight-bold">Signin </a><span class="text-muted">(Optional)</span>
 			</div>
 			<?php endif; ?>
-			<hr id="checkout-line" />
 
 		</div>
 
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<hr id="checkout-line" />
+
+		</div>
 	</div>
 
 	<div class="row">
@@ -49,17 +57,52 @@
 				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 				<li class="list-group-item d-flex justify-content-between bg-light">
+					<?php if( $promo_code ): ?>
+					<div class="text-success">
+						<h6 class="my-0">Promo code</h6>
+						<small><?php echo e($promo_code->code); ?></small>
+					</div>
+					<span class="text-success">-৳50</span>
+					<?php else: ?>
 					<div class="text-success">
 						<h6 class="my-0">Promo code</h6>
 						<small>N/A</small>
 					</div>
 					<span class="text-success">N/A</span>
+					<?php endif; ?>
 				</li>
 				<li class="list-group-item d-flex justify-content-between">
 					<span>Total (BDT)</span>
+
+					<?php if( $total ): ?>
+					<strong>৳<?php echo e($total); ?></strong>
+					<?php else: ?>
 					<strong>৳<?php echo e(Cart::subtotal()); ?></strong>
+					<?php endif; ?>
 				</li>
 			</ul>
+
+			<form method="post" action="<?php echo e(route('order.coupon')); ?>" class="card p-2">
+				<?php echo csrf_field(); ?>
+				<div class="input-group">
+					<input type="text" class="form-control" name="code" placeholder="Promo code">
+					<div class="input-group-append">
+							<?php if( $promo_code ): ?>
+						<button type="submit" class="btn btn-secondary" disabled>Redeem</button>
+						<?php else: ?>
+						<button type="submit" class="btn btn-secondary">Redeem</button>
+						<?php endif; ?>
+					</div>
+				</div>
+			</form>
+
+			
+
+			<?php if(session()->has('promo_error')): ?>
+			<div class="alert  alert-danger text-center">
+				Invalid Promo Code
+			</div>
+		  <?php endif; ?>
 
 		</div>
 		<div class="col-md-8 order-md-1">
@@ -125,6 +168,10 @@
 					</div>
 				</div>
 
+				<?php if( $total ): ?> 
+					<input type="hidden" name="totalWithCoupon" value="<?php echo e($total); ?>">
+				<?php endif; ?>
+
 				<hr class="mb-4">
 
 				<h4 class="mb-3">Payment</h4>
@@ -135,7 +182,6 @@
 						<label class="custom-control-label" for="credit">Cash on Delivery</label>
 
 					</div>
-
 				</div>
 
 				<hr class="mb-4">

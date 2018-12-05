@@ -43,6 +43,8 @@ class CartController extends Controller
     public function checkout(){
 
         $cat = Category::all();
+        $total = CART::subtotal();
+        $promo_code = FALSE;
 
         if(Cart::count() <= 0){
 
@@ -54,7 +56,9 @@ class CartController extends Controller
 
                 return view('checkout')
                     ->with('cat', $cat)
-                    ->with('currentUser', session('user'));
+                    ->with('currentUser', session('user'))
+                    ->with('promo_code', $promo_code)
+                    ->with('total', $total);
             }
             else{
 

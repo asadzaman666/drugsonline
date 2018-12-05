@@ -9,6 +9,7 @@ use \App\User;
 use \App\Medicine;
 use \App\Category;
 use \App\Order;
+use \App\Coupon;
 use Mail;
 
 class OrderController extends Controller
@@ -27,6 +28,27 @@ class OrderController extends Controller
             ->with('currentUser', session('user'));
     }
 
+    public function coupon ( Request $request ) {
+
+        $cat = Category::all();
+        
+        $total = Cart::subtotal();
+        $coup = Coupon::where('code', '=', $request->code)
+        ->first(['code']);
+
+            if ( $total >= 500 && $coup ) {
+
+                $total -= 50;
+                return view('checkout')
+                    ->with('total', $total)
+                    ->with('cat', $cat)
+                    ->with('promo_code', $coup)
+                    ->with('currentUser', session('user'));
+            } else {
+                $request->session()->flash('promo_error');
+                return back();
+            }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -50,7 +72,12 @@ class OrderController extends Controller
         $order = new Order();
 
         $order->cart = serialize(Cart::content());
-        $order->total_price = Cart::subtotal();
+
+        if ( $request->totalWithCoupon ) {
+            $order->total_price = $request->totalWithCoupon;
+        } else {
+            $order->total_price = Cart::subtotal();
+        }
 
         if(session()->has('user')){
 
@@ -67,6 +94,9 @@ class OrderController extends Controller
         $order->email = $request->email;
         $order->delivery_address = $request->address;
         $order->status = 'Pending';
+
+
+        dd($order);
 
         $order->save();
 

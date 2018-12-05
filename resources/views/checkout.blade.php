@@ -14,16 +14,24 @@
 		<div class="col-md-12 order-md-2 ">
 			<div class="py-5 " style="float:left">
 				<h2>Checkout </h2>
+
 			</div>
+
 			@if(!session()->has('user'))
 			<div class="py-5 " style="float:right">
 				<a href="{{route('login.index')}}" class="font-weight-bold">Signin </a><span class="text-muted">(Optional)</span>
 			</div>
 			@endif
-			<hr id="checkout-line" />
 
 		</div>
 
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<hr id="checkout-line" />
+
+		</div>
 	</div>
 
 	<div class="row">
@@ -51,17 +59,50 @@
 				@endforeach
 
 				<li class="list-group-item d-flex justify-content-between bg-light">
+					@if ( $promo_code )
+					<div class="text-success">
+						<h6 class="my-0">Promo code</h6>
+						<small>{{$promo_code->code}}</small>
+					</div>
+					<span class="text-success">-৳50</span>
+					@else
 					<div class="text-success">
 						<h6 class="my-0">Promo code</h6>
 						<small>N/A</small>
 					</div>
 					<span class="text-success">N/A</span>
+					@endif
 				</li>
 				<li class="list-group-item d-flex justify-content-between">
 					<span>Total (BDT)</span>
+
+					@if ( $total )
+					<strong>৳{{$total}}</strong>
+					@else
 					<strong>৳{{Cart::subtotal()}}</strong>
+					@endif
 				</li>
 			</ul>
+
+			<form method="post" action="{{route('order.coupon')}}" class="card p-2">
+				@csrf
+				<div class="input-group">
+					<input type="text" class="form-control" name="code" placeholder="Promo code">
+					<div class="input-group-append">
+						@if ( $promo_code )
+						<button type="submit" class="btn btn-secondary" disabled>Redeem</button>
+						@else
+						<button type="submit" class="btn btn-secondary">Redeem</button>
+						@endif
+					</div>
+				</div>
+			</form>
+
+			@if(session()->has('promo_error'))
+			<div class="alert  alert-danger text-center">
+				Invalid Promo Code
+			</div>
+			@endif
 
 		</div>
 		<div class="col-md-8 order-md-1">
@@ -126,6 +167,10 @@
 					</div>
 				</div>
 
+				@if ( $total )
+				<input type="hidden" name="totalWithCoupon" value="{{$total}}">
+				@endif
+
 				<hr class="mb-4">
 
 				<h4 class="mb-3">Payment</h4>
@@ -136,7 +181,6 @@
 						<label class="custom-control-label" for="credit">Cash on Delivery</label>
 
 					</div>
-
 				</div>
 
 				<hr class="mb-4">

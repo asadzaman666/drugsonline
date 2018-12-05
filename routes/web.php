@@ -43,6 +43,8 @@ Route::get('/thankyou', 'HomeController@thankyou')->name('thankyou');
 //user check w/ middleware
 Route::group(['middleware' => ['checkUser']], function(){
 
+    //coupon reedem
+    Route::post('/coupon', 'OrderController@coupon')->name('order.coupon');
     //cancel order
     Route::delete('orders/{id}/delete', 'OrderController@destroy')->name('order.destroy');
 
