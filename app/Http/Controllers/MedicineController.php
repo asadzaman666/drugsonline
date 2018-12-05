@@ -76,6 +76,18 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'brand' => 'required',
+            'contains' => 'required',
+            'form' => 'required',
+            'quantity' => 'required',
+            'category_id' => 'required',
+            'price' => 'required',
+            'amount' => 'required',
+            'image' => 'nullable',
+        ]);
+
         $med = new Medicine();
         
         $cat = Category::where('name', '=', $request->category)

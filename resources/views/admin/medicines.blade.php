@@ -5,7 +5,7 @@
 
 @section('custom-css')
 
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/admin.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/admin.css') }}" />
 
 @endsection
 
@@ -37,41 +37,41 @@
 						</tr>
 					</thead>
 					<tbody>
-								<div class="admin-btn-med">
-									@foreach($med as $meds)
-										<div class="workpls" >
-											<form action="{{route('medicine.update', $meds->id)}}" method="post">
-				                <tr>
-				  								<th scope="row">{{$meds->id}} </th>
-				  								<td>
-				  									<input  class="form-control name-form" type="text" name="name" value="{{$meds->name}}" />
-				  								</td>
-				                  <td>
-				  									<input  class="form-control" type="text" name="brand" value="{{$meds->brand}}" />
-				  								</td>
-				                  <td>
-				  									<textarea  class="form-control" type="text" name="contains">{{$meds->contains}}</textarea>
-				  								</td>
-				                  <td>
-				  									<input  class="form-control name-form" type="text" name="form" value="{{$meds->form}}" />
-				  								</td>
-				                  <td>
-				  									<input  class="form-control row-size" type="text" name="quantity" value="{{$meds->quantity}}" />
-				  								</td>
-				                  <td>
-				  									<input  class="form-control name-form" type="text" name="amount" value="{{$meds->amount}}" />
-				  								</td>
-				                  <td>
-				  									<input  class="form-control row-size" type="text" name="price" value="{{$meds->price}}" />
-				  								</td>
-				                  <td>
-				  									<input  class="form-control" type="text" name="image" value="{{$meds->image}}" />
-				  								</td>
-													<td>
-														<select id="inputState" name="category" class="form-control">
-														@foreach($cat as $cats)
+						<div class="admin-btn-med">
+							@foreach($med as $meds)
+							<div class="workpls">
+								<form action="{{route('medicine.update', $meds->id)}}" method="post">
+									<tr>
+										<th scope="row">{{$meds->id}} </th>
+										<td>
+											<input class="form-control name-form" type="text" name="name" value="{{$meds->name}}" />
+										</td>
+										<td>
+											<input class="form-control" type="text" name="brand" value="{{$meds->brand}}" />
+										</td>
+										<td>
+											<textarea class="form-control" type="text" name="contains">{{$meds->contains}}</textarea>
+										</td>
+										<td>
+											<input class="form-control name-form" type="text" name="form" value="{{$meds->form}}" />
+										</td>
+										<td>
+											<input class="form-control row-size" type="text" name="quantity" value="{{$meds->quantity}}" />
+										</td>
+										<td>
+											<input class="form-control name-form" type="text" name="amount" value="{{$meds->amount}}" />
+										</td>
+										<td>
+											<input class="form-control row-size" type="text" name="price" value="{{$meds->price}}" />
+										</td>
+										<td>
+											<input class="form-control" type="text" name="image" value="{{$meds->image}}" />
+										</td>
+										<td>
+											<select id="inputState" name="category" class="form-control">
+												@foreach($cat as $cats)
 
-															<?php
+												<?php
 																if($cats->name == $meds->category->name){
 																	$variable = "Selected";
 																}
@@ -79,32 +79,33 @@
 																	$variable = NULL;
 																}
 															 ?>
-				                        <option {{$variable}}>{{$cats->name}}</option>
-														@endforeach
-				  								</td>
-				                  <td>
-															{{ csrf_field() }}
-				                        <input name="_method" type="hidden" value="put">
-																<div class="workpls">
+												<option {{$variable}}>{{$cats->name}}</option>
+												@endforeach
+										</td>
+										<td>
+											{{ csrf_field() }}
+											<input name="_method" type="hidden" value="put">
+											<div class="workpls">
 
-																		<button onclick='alert("Updated")' type="submit" class="btn btn-success btn-sm">
-																			<i class="fas fa-edit"></i> Update
-					                					</button>
+												<button onclick='alert("Updated")' type="submit" class="btn btn-success btn-sm">
+													<i class="fas fa-edit"></i> Update
+												</button>
 
-																</div>
-				                      </form>
-			  								</td>
-												<td>
-													<form action="{{route('medicine.destroy', $meds->id)}}" method="post">
-														{{ csrf_field() }}
-														<input name="_method" type="hidden" value="delete">
-														<div class="workpls">
-																<button  onclick='return confirm("You sure want to delete?")' type="submit" class="btn btn-danger btn-sm"><i class="fas fa-minus-circle"></i> Delete</button>
-														</div>
-													</form>
-												</td>
-			  							</tr>
-              @endforeach
+											</div>
+								</form>
+								</td>
+								<td>
+									<form action="{{route('medicine.destroy', $meds->id)}}" method="post">
+										{{ csrf_field() }}
+										<input name="_method" type="hidden" value="delete">
+										<div class="workpls">
+											<button onclick='return confirm("You sure want to delete?")' type="submit" class="btn btn-danger btn-sm"><i
+												 class="fas fa-minus-circle"></i> Delete</button>
+										</div>
+									</form>
+								</td>
+								</tr>
+								@endforeach
 					</tbody>
 				</table>
 			</div>

@@ -10,27 +10,24 @@
 </head>
 
 
-  <body>
+<body>
 
 
-        <!-- Navigation -->
+    <!-- Navigation -->
 
-            @include('partials._navbar')
+    @include('partials._navbar')
 
+    <!-- Page Content -->
+    @yield('content')
 
-        <!-- Page Content -->
-            @yield('content')
+    <!-- Footer -->
+    <!-- @include('partials._footer') -->
 
-
-        <!-- Footer -->
-            <!-- @include('partials._footer') -->
-
-
-        <!-- Bootstrap core JavaScript -->
-            @include('partials._javascripts')
-            @yield('custom-scripts')
+    <!-- Bootstrap core JavaScript -->
+    @include('partials._javascripts')
+    @yield('custom-scripts')
 
 
-  </body>
+</body>
 
 </html>
