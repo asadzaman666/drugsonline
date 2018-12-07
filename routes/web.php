@@ -86,6 +86,9 @@ Route::group(['middleware' => ['checkAdmin']], function() {
     Route::get('/orders', 'OrderController@index')->name('order.index');
     Route::put('/order/{id}/status', 'OrderController@update')->name('order.update');
 
+    //admin orders filter by status
+    Route::post('/orders/filter', 'OrderController@filterOrder')->name('order.filterOrder');
+
     //admin med-cat destroy & update
     Route::delete('/category/{id}', 'CategoryController@destroy')->name('category.destroy');
     Route::delete('/medicine/{id}', 'MedicineController@destroy')->name('medicine.destroy');

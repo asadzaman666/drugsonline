@@ -21,7 +21,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $order = Order::all()->sortBy('created_at');
+        $order = Order::all()->sortBy('updated_at');
 
         return view('admin.orders')
             ->with('order', $order)
@@ -166,6 +166,33 @@ class OrderController extends Controller
         ->with('cat', $cat)
         ->with('order', $order)
         ->with('currentUser',  session('user'));
+    }
+
+    /**
+     * Filter order by status (Admin)
+     * 1 = Pending 
+     * 2 = Shipped
+     * 3 = Delivered
+     */
+    public function filterOrder( Request $request ) {
+
+        if ( $request->selectedFilter == 1 ) {
+            $order = Order::where( 'status', '=', 'Pending' )
+                ->get();
+
+        } elseif ( $request->selectedFilter == 2 ) {
+            $order = Order::where( 'status', 'Shipped' )
+                ->get();
+        } elseif ( $request->selectedFilter == 3 ) {
+            $order = Order::where( 'status', 'Delivered' )
+                ->get();
+        } else {
+            return redirect()->route('order.index');
+        }
+        
+        return view('admin.orders')
+            ->with('order', $order)
+            ->with('currentUser', session('user'));
     }
 
     /**

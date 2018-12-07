@@ -17,6 +17,22 @@
 	<div class="row">
 		<div class="view-table">
 			<div class="card orders">
+
+					<div>
+							<form method="POST" action="<?php echo e(route('order.filterOrder')); ?>" class="form-inline mb-3"
+							    style="float:right;">
+							    <?php echo csrf_field(); ?>
+							    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Filter by</label>
+							    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="selectedFilter">
+								  <option selected>None</option>
+								  <option value="1">Pending</option>
+								  <option value="2">Shipped</option>
+								  <option value="3">Delivered</option>
+							    </select>
+			
+							    <button class="btn btn-md btn-primary">Submit</button>
+							</form>
+
 				<table class="table">
 					<thead class="thead-light">
 						<tr class="bg-primary2">
