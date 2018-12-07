@@ -59,6 +59,8 @@ Route::group(['middleware' => ['checkUser']], function(){
 
         //order-show(user)
         Route::get('/{id}/orders', 'OrderController@show')->name('order.show');
+        //order filter (user)
+        Route::post('/{id}/orders/filter', 'OrderController@filter')->name('order.filter');
     });
 
 });

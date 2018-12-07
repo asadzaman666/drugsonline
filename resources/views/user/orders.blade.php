@@ -23,6 +23,22 @@ DrugOnline | Orders
                     My Orders
                 </div>
                 <div class="card-body">
+                    <div>
+                        <form method="POST" action="{{route('order.filter', $currentUser)}}" class="form-inline mb-3"
+                            style="float:right;">
+                            @csrf
+                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Filter by</label>
+                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="selectedFilter">
+                                <option selected>None</option>
+                                <option value="1">Pending</option>
+                                <option value="2">Shipped</option>
+                                <option value="3">Delivered</option>
+                            </select>
+
+                            <button class="btn btn-md btn-primary">Submit</button>
+                        </form>
+
+                    </div>
                     <table class="table">
                         <thead>
                             <tr class="bg-primary2">
@@ -58,13 +74,16 @@ DrugOnline | Orders
                                     </div>
                                     @if ( $orders->status == "Pending" )
                                     <div class="mt-2 mb-2">
-                                        {{-- <a href="{{route('order.destroy', $orders->id)}}"><button class="btn btn-block btn-danger">Cancel Order</button></a> --}}
+                                        {{-- <a href="{{route('order.destroy', $orders->id)}}"><button class="btn btn-block btn-danger">Cancel
+                                                Order</button></a> --}}
                                         <form action="{{route('order.destroy', $orders->id)}}" method="post">
                                             {{ csrf_field() }}
                                             <input name="_method" type="hidden" value="delete">
                                             <input type="hidden" name="id" value="{{$orders->id}}">
-                                            <button onclick='return confirm("You sure want to cancel?")' type="submit" class=" btn btn-block btn-danger"><i class="fas fa-trash"></i> Cancel Order</button>
-                                          </form>
+                                            <button onclick='return confirm("You sure want to cancel?")' type="submit"
+                                                class=" btn btn-block btn-danger"><i class="fas fa-trash"></i> Cancel
+                                                Order</button>
+                                        </form>
                                     </div>
                                     @endif
                                 </td>

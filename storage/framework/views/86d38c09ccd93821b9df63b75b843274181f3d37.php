@@ -87,7 +87,7 @@
 				<div class="input-group">
 					<input type="text" class="form-control" name="code" placeholder="Promo code">
 					<div class="input-group-append">
-							<?php if( $promo_code ): ?>
+						<?php if( $promo_code ): ?>
 						<button type="submit" class="btn btn-secondary" disabled>Redeem</button>
 						<?php else: ?>
 						<button type="submit" class="btn btn-secondary">Redeem</button>
@@ -96,13 +96,11 @@
 				</div>
 			</form>
 
-			
-
 			<?php if(session()->has('promo_error')): ?>
 			<div class="alert  alert-danger text-center">
 				Invalid Promo Code
 			</div>
-		  <?php endif; ?>
+			<?php endif; ?>
 
 		</div>
 		<div class="col-md-8 order-md-1">
@@ -168,8 +166,8 @@
 					</div>
 				</div>
 
-				<?php if( $total ): ?> 
-					<input type="hidden" name="totalWithCoupon" value="<?php echo e($total); ?>">
+				<?php if( $total ): ?>
+				<input type="hidden" name="totalWithCoupon" value="<?php echo e($total); ?>">
 				<?php endif; ?>
 
 				<hr class="mb-4">

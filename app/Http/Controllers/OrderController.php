@@ -134,6 +134,40 @@ class OrderController extends Controller
           return back();
     }
 
+    /** Filter by status USER
+     * 
+     * 1 = Pending 
+     * 2 = Shipped
+     * 3 = Delivered
+     */
+
+    public function filter( Request $request, $id ) {
+
+        $cat = Category::all();
+
+        if ( $request->selectedFilter == 1 ) {
+            $order = Order::where ( 'user_id', '=', $id )
+                ->where( 'status', '=', 'Pending' )
+                ->get();
+
+        } elseif ( $request->selectedFilter == 2 ) {
+            $order = Order::where ( 'user_id', '=', $id )
+                ->where( 'status', 'Shipped' )
+                ->get();
+        } elseif ( $request->selectedFilter == 3 ) {
+            $order = Order::where ( 'user_id', '=', $id )
+                ->where( 'status', 'Delivered' )
+                ->get();
+        } else {
+            return back();
+        }
+        
+        return view('user.orders')
+        ->with('cat', $cat)
+        ->with('order', $order)
+        ->with('currentUser',  session('user'));
+    }
+
     /**
      * Display the specified resource.
      *
@@ -153,7 +187,7 @@ class OrderController extends Controller
         return view('user.orders')
             ->with('cat', $cat)
             ->with('order', $order)
-            // ->with('cart',  $usercart)
+            ->with('orderstatus',  'None')
             ->with('currentUser',  session('user'));
     }
 
