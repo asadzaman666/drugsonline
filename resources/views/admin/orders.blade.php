@@ -60,21 +60,21 @@
 								{{ csrf_field() }}
 								<input name="_method" type="hidden" value="put">
 								<td>
-									<select id="inputState" name="status" class="form-control">
-                    @if($orders->status == "Pending")
-                        <option selected>Pending</option>
-                        <option >Shipped</option>
-                        <option >Delivered</option>
-                    @elseif ($orders->status == "Shipped")
-                        <option >Pending</option>
-                        <option selected>Shipped</option>
-                        <option >Delivered</option>
-                    @elseif ($orders->status == "Delivered")
-                        <option >Pending</option>
-                        <option >Shipped</option>
-                        <option selected>Delivered</option>
-                    @endif
-                  </select>
+									<select id="selectStatus" name="status" class="form-control">
+										@if($orders->status == "Pending")
+										<option id="orderStatusAdmin" selected>Pending</option>
+										<option>Shipped</option>
+										<option>Delivered</option>
+										@elseif ($orders->status == "Shipped")
+										<option>Pending</option>
+										<option id="orderStatusAdmin"  selected>Shipped</option>
+										<option>Delivered</option>
+										@elseif ($orders->status == "Delivered")
+										<option>Pending</option>
+										<option>Shipped</option>
+										<option id="orderStatusAdmin"  selected>Delivered</option>
+										@endif
+									</select>
 								</td>
 								<td>
 									<button type="submit" class="btn-success btn-sm"><i class="fas fa-edit"></i> Update</button>
@@ -93,4 +93,8 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('custom-scripts')
+	<script src="{{ asset('/js/admin-orders.js') }}"></script>
 @endsection

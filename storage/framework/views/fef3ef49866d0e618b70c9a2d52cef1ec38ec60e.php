@@ -59,21 +59,21 @@
 
 								<input name="_method" type="hidden" value="put">
 								<td>
-									<select id="inputState" name="status" class="form-control">
-                    <?php if($orders->status == "Pending"): ?>
-                        <option selected>Pending</option>
-                        <option >Shipped</option>
-                        <option >Delivered</option>
-                    <?php elseif($orders->status == "Shipped"): ?>
-                        <option >Pending</option>
-                        <option selected>Shipped</option>
-                        <option >Delivered</option>
-                    <?php elseif($orders->status == "Delivered"): ?>
-                        <option >Pending</option>
-                        <option >Shipped</option>
-                        <option selected>Delivered</option>
-                    <?php endif; ?>
-                  </select>
+									<select id="selectStatus" name="status" class="form-control">
+										<?php if($orders->status == "Pending"): ?>
+										<option id="orderStatusAdmin" selected>Pending</option>
+										<option>Shipped</option>
+										<option>Delivered</option>
+										<?php elseif($orders->status == "Shipped"): ?>
+										<option>Pending</option>
+										<option id="orderStatusAdmin"  selected>Shipped</option>
+										<option>Delivered</option>
+										<?php elseif($orders->status == "Delivered"): ?>
+										<option>Pending</option>
+										<option>Shipped</option>
+										<option id="orderStatusAdmin"  selected>Delivered</option>
+										<?php endif; ?>
+									</select>
 								</td>
 								<td>
 									<button type="submit" class="btn-success btn-sm"><i class="fas fa-edit"></i> Update</button>
@@ -92,5 +92,9 @@
 		</div>
 	</div>
 </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('custom-scripts'); ?>
+	<script src="<?php echo e(asset('/js/admin-orders.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

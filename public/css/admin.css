@@ -20,7 +20,7 @@
 /*-------------------*/
 
 .orders {
-    margin-top: 15px;
+    margin: 0;
 
 }
 
@@ -103,4 +103,10 @@
 .med-add-allign-2 {
   float: left;
   padding: 20px;
+}
+
+/* jquery data table */
+
+.dataTables_filter {
+  display: none;
 }
