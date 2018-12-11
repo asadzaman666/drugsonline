@@ -64,7 +64,7 @@
 						<h6 class="my-0">Promo code</h6>
 						<small>{{$promo_code->code}}</small>
 					</div>
-					<span class="text-success">-৳50</span>
+					<span class="text-success">- ৳50</span>
 					@else
 					<div class="text-success">
 						<h6 class="my-0">Promo code</h6>

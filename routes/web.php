@@ -95,6 +95,7 @@ Route::group(['middleware' => ['checkAdmin']], function() {
     Route::delete('/medicine/{id}', 'MedicineController@destroy')->name('medicine.destroy');
     Route::put('/category/{id}', 'CategoryController@update')->name('category.update');
     Route::put('/medicine/{id}', 'MedicineController@update')->name('medicine.update');
+    Route::get('/medicine/update/{id}', 'MedicineController@updateForm')->name('medicine.update.form');
 
 });
 

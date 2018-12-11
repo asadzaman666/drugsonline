@@ -40,33 +40,46 @@ MedStore | Medicines
 								<div class="admin-btn-med">
 									<?php $__currentLoopData = $med; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $meds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 									<div class="workpls">
-										<form action="<?php echo e(route('medicine.update', $meds->id)); ?>" method="post">
 											<tr>
 												<th scope="row"><?php echo e($meds->id); ?> </th>
 												<td>
-														<input class="form-control name-form" type="text" name="name" value="<?php echo e($meds->name); ?>" />
+														<?php echo e($meds->name); ?>
+
+														
 												</td>
 												<td>
-													<input class="form-control" type="text" name="brand" value="<?php echo e($meds->brand); ?>" />
+														<?php echo e($meds->brand); ?>
+
+													
 												</td>
 												<td>
-													<textarea class="form-control" type="text" name="contains"><?php echo e($meds->contains); ?></textarea>
+														<?php echo e($meds->contains); ?>
+
+													
 												</td>
 												<td>
-													<input class="form-control name-form" type="text" name="form" value="<?php echo e($meds->form); ?>" />
+														<?php echo e($meds->form); ?>
+
+													
 												</td>
 												<td>
-													<p class="d-none"><?php echo e($meds->quantity); ?></p>
-													<input class="form-control row-size" type="text" name="quantity" value="<?php echo e($meds->quantity); ?>" />
+														<?php echo e($meds->quantity); ?>
+
+													
 												</td>
 												<td>
-													<input class="form-control name-form" type="text" name="amount" value="<?php echo e($meds->amount); ?>" />
+														<?php echo e($meds->amount); ?>
+
+													
 												</td>
 												<td>
-													<input class="form-control row-size" type="text" name="price" value="<?php echo e($meds->price); ?>" />
+														<?php echo e($meds->price); ?>
+
+													
 												</td>
 												<td>
-													<input class="form-control" type="text" name="image" value="<?php echo e($meds->image); ?>" />
+														<img src="<?php echo e($meds->image); ?>" alt="" style=" max-width: 150px; max-height: 150px;">
+													
 												</td>
 												<td>
 													<select id="inputState" name="category" class="form-control">
@@ -82,16 +95,29 @@ MedStore | Medicines
 																	 ?>
 														<option <?php echo e($variable); ?>><?php echo e($cats->name); ?></option>
 														<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
 												</td>
 												<td>
+													<form action="<?php echo e(route('medicine.update.form', $meds->id)); ?>" method="get">
 													<?php echo e(csrf_field()); ?>
 
-													<input name="_method" type="hidden" value="put">
+													
+
+													<input type="hidden" name="name" value="<?php echo e($meds->name); ?>" />
+													<input type="hidden" name="brand" value="<?php echo e($meds->brand); ?>" />
+													<input type="hidden" name="contains" valiue="<?php echo e($meds->contains); ?>" />
+													<input type="hidden" name="form" value="<?php echo e($meds->form); ?>" />
+													<input type="hidden" name="quantity" value="<?php echo e($meds->quantity); ?>" />
+													<input type="hidden" name="amount" value="<?php echo e($meds->amount); ?>" />
+													<input type="hidden" name="price" value="<?php echo e($meds->price); ?>"/>
+													<input type="hidden" name="image" value="<?php echo e($meds->image); ?>"  />
+
 													<div class="workpls">
 		
 														<button type="submit" class="btn btn-success btn-md">
 															<i class="fas fa-edit"></i> Update
 														</button>
+														
 		
 													</div>
 										</form>

@@ -42,33 +42,39 @@ MedStore | Medicines
 								<div class="admin-btn-med">
 									@foreach($med as $meds)
 									<div class="workpls">
-										<form action="{{route('medicine.update', $meds->id)}}" method="post">
 											<tr>
 												<th scope="row">{{$meds->id}} </th>
 												<td>
-														<input class="form-control name-form" type="text" name="name" value="{{$meds->name}}" />
+														{{$meds->name}}
+														{{-- <input class="form-control name-form" type="text" name="name" value="{{$meds->name}}" /> --}}
 												</td>
 												<td>
-													<input class="form-control" type="text" name="brand" value="{{$meds->brand}}" />
+														{{$meds->brand}}
+													{{-- <input class="form-control" type="text" name="brand" value="{{$meds->brand}}" /> --}}
 												</td>
 												<td>
-													<textarea class="form-control" type="text" name="contains">{{$meds->contains}}</textarea>
+														{{$meds->contains}}
+													{{-- <textarea class="form-control" type="text" name="contains">{{$meds->contains}}</textarea> --}}
 												</td>
 												<td>
-													<input class="form-control name-form" type="text" name="form" value="{{$meds->form}}" />
+														{{$meds->form}}
+													{{-- <input class="form-control name-form" type="text" name="form" value="{{$meds->form}}" /> --}}
 												</td>
 												<td>
-													<p class="d-none">{{$meds->quantity}}</p>
-													<input class="form-control row-size" type="text" name="quantity" value="{{$meds->quantity}}" />
+														{{$meds->quantity}}
+													{{-- <input class="form-control row-size" type="text" name="quantity" value="{{$meds->quantity}}" /> --}}
 												</td>
 												<td>
-													<input class="form-control name-form" type="text" name="amount" value="{{$meds->amount}}" />
+														{{$meds->amount}}
+													{{-- <input class="form-control name-form" type="text" name="amount" value="{{$meds->amount}}" /> --}}
 												</td>
 												<td>
-													<input class="form-control row-size" type="text" name="price" value="{{$meds->price}}" />
+														{{$meds->price}}
+													{{-- <input class="form-control row-size" type="text" name="price" value="{{$meds->price}}" /> --}}
 												</td>
 												<td>
-													<input class="form-control" type="text" name="image" value="{{$meds->image}}" />
+														<img src="{{$meds->image}}" alt="" style=" max-width: 150px; max-height: 150px;">
+													{{-- <input class="form-control" type="text" name="image" value="{{$meds->image}}" /> --}}
 												</td>
 												<td>
 													<select id="inputState" name="category" class="form-control">
@@ -84,15 +90,28 @@ MedStore | Medicines
 																	 ?>
 														<option {{$variable}}>{{$cats->name}}</option>
 														@endforeach
+
 												</td>
 												<td>
+													<form action="{{route('medicine.update.form', $meds->id)}}" method="get">
 													{{ csrf_field() }}
-													<input name="_method" type="hidden" value="put">
+													{{-- <input name="_method" type="hidden" value="put"> --}}
+
+													<input type="hidden" name="name" value="{{$meds->name}}" />
+													<input type="hidden" name="brand" value="{{$meds->brand}}" />
+													<input type="hidden" name="contains" valiue="{{$meds->contains}}" />
+													<input type="hidden" name="form" value="{{$meds->form}}" />
+													<input type="hidden" name="quantity" value="{{$meds->quantity}}" />
+													<input type="hidden" name="amount" value="{{$meds->amount}}" />
+													<input type="hidden" name="price" value="{{$meds->price}}"/>
+													<input type="hidden" name="image" value="{{$meds->image}}"  />
+
 													<div class="workpls">
 		
 														<button type="submit" class="btn btn-success btn-md">
 															<i class="fas fa-edit"></i> Update
 														</button>
+														{{-- <button type="submit" class="btn btn-warning  btn-lg btn-block"> Checkout </button> --}}
 		
 													</div>
 										</form>

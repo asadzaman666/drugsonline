@@ -62,7 +62,7 @@
 						<h6 class="my-0">Promo code</h6>
 						<small><?php echo e($promo_code->code); ?></small>
 					</div>
-					<span class="text-success">-৳50</span>
+					<span class="text-success">- ৳50</span>
 					<?php else: ?>
 					<div class="text-success">
 						<h6 class="my-0">Promo code</h6>

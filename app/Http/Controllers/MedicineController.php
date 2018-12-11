@@ -183,6 +183,24 @@ class MedicineController extends Controller
 
     }
 
+    /*
+    *update form of medicine
+    */
+
+    public function updateForm(Request $request, $id) {
+        // dd ($request, $id);
+        $cat = Category::all();
+        $med = Medicine::findorfail($id);
+
+
+        return view('admin.updatemedicine')
+            ->with('cat', $cat)
+            ->with('meds', $med)
+            ->with('currentUser', session('user'));
+
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -212,6 +230,19 @@ class MedicineController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'brand' => 'required',
+            'contains' => 'required',
+            'form' => 'required',
+            'quantity' => 'required ',
+            'price' => 'required ',
+            'amount' => 'required',
+            'image' => 'nullable',
+        ]);
+
         $med  = Medicine::find($id);
         $cat = Category::where('name', '=', $request->category)
             ->first();
@@ -228,8 +259,11 @@ class MedicineController extends Controller
 
         $med->save();
 
+        $request->session()->flash('med_updated', 'Medicine added to Database');
+
         return back();
     }
+
 
     /**
      * Remove the specified resource from storage.

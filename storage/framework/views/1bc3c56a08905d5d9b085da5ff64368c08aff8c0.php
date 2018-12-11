@@ -45,9 +45,20 @@
             </a>
           </div>
 
+          <div class="row">
+            <div class="col-md-12">
+                <div class="card border-info mb-2">
+                    <div class="card-header">
+                      <h2 class="lead text-center"> Get 50tk discount for buying over 300tk. Use Coupon INDEPDAY18</h2>
+                    </div>
+                  </div>
+            </div>
+          </div>
 
+          <hr>
 
           <div class="row">
+            
               <?php $__currentLoopData = $med; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $meds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                   
