@@ -24,6 +24,11 @@ DrugOnline | Orders
                 </div>
                 <div class="card-body">
                     <div>
+                            @if(session()->has('order_cancel'))
+                            <div class="alert alert-success text-center" style="margin-top:10px">
+                                <strong>Order Cancelled</strong>
+                            </div>
+                            @endif
                         <form method="POST" action="{{route('order.filter', $currentUser)}}" class="form-inline mb-3"
                             style="float:right;">
                             @csrf
@@ -94,11 +99,6 @@ DrugOnline | Orders
                                 <td>{{$orders->status}}</td>
                             </tr>
                             @endforeach
-                            @if(session()->has('order_cancel'))
-                            <div class="alert alert-success text-center" style="margin-top:10px">
-                                <strong>Order Cancelled</strong>
-                            </div>
-                            @endif
                         </tbody>
                     </table>
                 </div>

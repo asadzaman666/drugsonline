@@ -22,6 +22,11 @@ DrugOnline | Orders
                 </div>
                 <div class="card-body">
                     <div>
+                            <?php if(session()->has('order_cancel')): ?>
+                            <div class="alert alert-success text-center" style="margin-top:10px">
+                                <strong>Order Cancelled</strong>
+                            </div>
+                            <?php endif; ?>
                         <form method="POST" action="<?php echo e(route('order.filter', $currentUser)); ?>" class="form-inline mb-3"
                             style="float:right;">
                             <?php echo csrf_field(); ?>
@@ -93,11 +98,6 @@ DrugOnline | Orders
                                 <td><?php echo e($orders->status); ?></td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php if(session()->has('order_cancel')): ?>
-                            <div class="alert alert-success text-center" style="margin-top:10px">
-                                <strong>Order Cancelled</strong>
-                            </div>
-                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>

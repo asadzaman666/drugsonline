@@ -34,7 +34,7 @@
                     </p>
                 </td>
                 <td > <?php echo e($item->qty); ?>pc </td>
-                <td >৳<?php echo e(($item->qty * $item->price)); ?> <i class="fas fa-minus-circle" id="cart-remove"></i></td>
+                <td >৳<?php echo e(($item->qty * $item->price)); ?> </td>
               </tr>
              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
              </tbody>

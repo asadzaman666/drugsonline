@@ -27,6 +27,7 @@ Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
 Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::post('/cart', 'CartController@store')->name('cart.store');
 Route::get('/empty', 'CartController@destroy')->name('cart.destroy');
+Route::post('/cart/update/{rowId}', 'CartController@updateQty')->name('cart.updateQty');
 
 //order-store
 Route::post('/checkout', 'OrderController@store')->name('order.store');

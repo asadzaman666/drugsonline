@@ -34,7 +34,7 @@
                     </p>
                 </td>
                 <td > {{$item->qty}}pc </td>
-                <td >৳{{($item->qty * $item->price)}} <i class="fas fa-minus-circle" id="cart-remove"></i></td>
+                <td >৳{{($item->qty * $item->price)}} </td>
               </tr>
              @endforeach
              </tbody>

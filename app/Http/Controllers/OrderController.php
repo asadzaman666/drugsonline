@@ -36,7 +36,7 @@ class OrderController extends Controller
         $coup = Coupon::where('code', '=', $request->code)
         ->first(['code']);
 
-            if ( $total >= 500 && $coup ) {
+            if ( $total >= 300 && $coup ) {
 
                 $total -= 50;
                 return view('checkout')
@@ -96,7 +96,7 @@ class OrderController extends Controller
         $order->status = 'Pending';
 
 
-        dd($order);
+        // dd($order);
 
         $order->save();
 
@@ -159,7 +159,8 @@ class OrderController extends Controller
                 ->where( 'status', 'Delivered' )
                 ->get();
         } else {
-            return back();
+            // dd(session('user')->id);
+            return redirect()->route('order.show',  session('user')->id);
         }
         
         return view('user.orders')

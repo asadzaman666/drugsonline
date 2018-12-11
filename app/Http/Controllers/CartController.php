@@ -110,6 +110,26 @@ class CartController extends Controller
     }
 
     /**
+     * update cart
+     */
+    // public function updateQty ( Request $request, $rowId ) {
+
+    //     $maxQty = Medicine::find($request->id)
+    //         ->first();
+
+    //     if ($request->itemQty > $maxQty['quantity'] ) {
+    //         return "error";
+    //         // return back ( )->with("qty-error", "Quantity exceed stock!");
+    //     } else {
+    //         Cart::update ($rowId, $request->itemQty);
+
+
+    //         return back()->with('cart-updated', 'cart-updated');
+    //         // return back ( ) -> with ("cart-updated", "Cart Updated" );
+    //     }
+    // }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

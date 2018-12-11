@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use \App\User;
 use \App\Medicine;
 use \App\Category;
+use Image;
 
 class MedicineController extends Controller
 {
@@ -81,32 +82,74 @@ class MedicineController extends Controller
             'brand' => 'required',
             'contains' => 'required',
             'form' => 'required',
-            'quantity' => 'required',
-            'category_id' => 'required',
-            'price' => 'required',
+            'quantity' => 'required ',
+            'price' => 'required ',
             'amount' => 'required',
             'image' => 'nullable',
         ]);
 
-        $med = new Medicine();
-        
-        $cat = Category::where('name', '=', $request->category)
+        $medExist = Medicine::where('name', '=', $request->name )
+            ->where('contains', '=', $request->contains)
             ->first();
 
-        $med->name = $request->name;
-        $med->brand = $request->brand;
-        $med->contains = $request->contains;
-        $med->form = $request->form;
-        $med->quantity = $request->quantity;
-        $med->category_id = $cat->id;
-        $med->price = $request->price;
-        $med->amount = $request->amount;
-        $med->image = $request->image;
-
-        $med->save();
-
-        $request->session()->flash('med_added', 'Medicine added to Database');
+            if($medExist) {
+                $request->session()->flash('med_added_error', 'Medicine exist already');
         return back();
+            } else {
+                $med = new Medicine();
+        
+                $cat = Category::where('name', '=', $request->category)
+                    ->first();
+        
+                $med->name = $request->name;
+                $med->brand = $request->brand;
+                $med->contains = $request->contains;
+                $med->form = $request->form;
+                $med->quantity = $request->quantity;
+                $med->category_id = $cat->id;
+                $med->price = $request->price;
+                $med->amount = $request->amount;
+                $med->image = $request->image;
+
+                // if($request->hasFile('files')){
+
+                //     $image = $request->file('files');
+                //     $filename = time(). '.' .$image->getClientOriginalExtension();
+                //     $location = public_path('images/'. $filename);
+        
+                //     Image::make($image)->resize(800, 600)->save($location);
+        
+                //     dd($med->image = $filename);
+        
+                // }
+        
+                $med->save();
+        
+                $request->session()->flash('med_added', 'Medicine added to Database');
+                return back();
+        
+            }
+
+        // $med = new Medicine();
+        
+        // $cat = Category::where('name', '=', $request->category)
+        //     ->first();
+
+        // $med->name = $request->name;
+        // $med->brand = $request->brand;
+        // $med->contains = $request->contains;
+        // $med->form = $request->form;
+        // $med->quantity = $request->quantity;
+        // $med->category_id = $cat->id;
+        // $med->price = $request->price;
+        // $med->amount = $request->amount;
+        // $med->image = $request->image;
+
+        // $med->save();
+
+        // $request->session()->flash('med_added', 'Medicine added to Database');
+        // return back();
+
 
     }
 

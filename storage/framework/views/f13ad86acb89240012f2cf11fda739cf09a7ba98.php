@@ -72,7 +72,7 @@
 					<div class="mb-3">
 						<label for="username">Image</label>
 						<div class="input-group">
-							<input type="text" class="form-control" id="username" name="image" required>
+							<input type="text" class="form-control" id="username" name="image" >
 						</div>
 					</div>
 					<div class="form-group">
@@ -91,6 +91,12 @@
 			<?php if(session()->has('med_added')): ?>
 			<div class="alert alert-success text-center" style="margin-top:10px">
 				<strong>Medicine added</strong>
+			</div>
+			<?php endif; ?>
+
+			<?php if(session()->has('med_added_error')): ?>
+			<div class="alert alert-danger text-center" style="margin-top:10px">
+				<strong>Medicine exist already</strong>
 			</div>
 			<?php endif; ?>
 		</div>
