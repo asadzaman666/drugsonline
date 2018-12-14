@@ -72,6 +72,9 @@ DrugOnline | Orders
 
                                                 <strong> {{$item->options->contains}},&nbsp {{$item->qty}}pc</strong>
 
+                                                    {{-- {{$itemQuantity = $item->qty}}
+                                                    {{$itemId = $item->id}} --}}
+                                                
                                             </p>
 
                                             @endforeach
@@ -85,9 +88,12 @@ DrugOnline | Orders
                                             {{ csrf_field() }}
                                             <input name="_method" type="hidden" value="delete">
                                             <input type="hidden" name="id" value="{{$orders->id}}">
+                                            {{-- <input type="hidden" name="itemQuantity" value="{{$itemQuantity}}">
+                                            <input type="hidden" name="itemId" value="{{$itemId}}"> --}}
+                                            
                                             <button onclick='return confirm("You sure want to cancel?")' type="submit"
-                                                class=" btn btn-block btn-danger"><i class="fas fa-trash"></i> Cancel
-                                                Order</button>
+                                                class=" btn btn-block btn-danger"><i class="fas fa-trash"></i> Cancel Order
+                                                </button>
                                         </form>
                                     </div>
                                     @endif

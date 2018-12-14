@@ -71,6 +71,8 @@ DrugOnline | Orders
 
                                                 <strong> <?php echo e($item->options->contains); ?>,&nbsp <?php echo e($item->qty); ?>pc</strong>
 
+                                                    
+                                                
                                             </p>
 
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -84,9 +86,11 @@ DrugOnline | Orders
 
                                             <input name="_method" type="hidden" value="delete">
                                             <input type="hidden" name="id" value="<?php echo e($orders->id); ?>">
+                                            
+                                            
                                             <button onclick='return confirm("You sure want to cancel?")' type="submit"
-                                                class=" btn btn-block btn-danger"><i class="fas fa-trash"></i> Cancel
-                                                Order</button>
+                                                class=" btn btn-block btn-danger"><i class="fas fa-trash"></i> Cancel Order
+                                                </button>
                                         </form>
                                     </div>
                                     <?php endif; ?>

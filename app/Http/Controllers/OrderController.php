@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\DB;
 
 use \App\User;
 use \App\Medicine;
@@ -11,6 +12,7 @@ use \App\Category;
 use \App\Order;
 use \App\Coupon;
 use Mail;
+use Session;
 
 class OrderController extends Controller
 {
@@ -21,7 +23,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $order = Order::all()->sortBy('updated_at');
+        $order = Order::all()->sortBy('created_at');
 
         return view('admin.orders')
             ->with('order', $order)
@@ -39,6 +41,7 @@ class OrderController extends Controller
             if ( $total >= 300 && $coup ) {
 
                 $total -= 50;
+                Session::flash( 'CouponApplied', 'ihavecoupon');
                 return view('checkout')
                     ->with('total', $total)
                     ->with('cat', $cat)
@@ -95,9 +98,6 @@ class OrderController extends Controller
         $order->delivery_address = $request->address;
         $order->status = 'Pending';
 
-
-        // dd($order);
-
         $order->save();
 
         $data = array(
@@ -112,8 +112,6 @@ class OrderController extends Controller
         });
 
         return redirect()->route('thankyou');
-
-        // $item = unserialize($order->cart);
 
     }
 
@@ -221,15 +219,25 @@ class OrderController extends Controller
 
 
     /**
-     * Remove pending order by user
-     *
+     * Remove pending order by user 
+     * & update quantiity
+     * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
-
         $order = Order::find($request->id);
+        $cart = unserialize($order->cart);
+
+        foreach ($cart as $key) {
+            $med = Medicine::find($key->id);
+            $updatedQuantity = $med->quantity + $key->qty;
+            
+            DB::table('medicines')
+            ->where('id', $key->id)
+            ->update(['quantity' => $updatedQuantity]);
+        }
 
         $order->delete();
 

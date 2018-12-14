@@ -52,7 +52,7 @@
             <div class="col-md-12">
                 <div class="card border-info mb-2">
                     <div class="card-header">
-                      <h2 class="lead text-center"> Get 50tk discount for buying over 300tk. Use Coupon INDEPDAY18</h2>
+                      <h2 class="lead text-center"> Get 50tk discount for buying over 300tk. Use Coupon VICTORYDAY18</h2>
                     </div>
                   </div>
             </div>
